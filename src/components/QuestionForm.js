@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 function QuestionForm(props) {
   const [formData, setFormData] = useState({
@@ -10,6 +10,15 @@ function QuestionForm(props) {
     correctIndex: 0,
   });
 
+  const isMounted =useRef(true);
+
+  useEffect(() => {
+      isMounted.current =true;
+      return () => {
+      isMounted.current =false;
+    };
+  }, []);
+
   function handleChange(event) {
     setFormData({
       ...formData,
@@ -19,6 +28,7 @@ function QuestionForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
     fetch("http://localhost:4000/questions", {
       method: "POST",
       headers: {
@@ -37,7 +47,9 @@ function QuestionForm(props) {
     })
       .then((response) => response.json())
       .then((newQuestion) => {
+        if(!isMounted.current) return;
       props.onAddQuestion(newQuestion);
+      props.onChangePage("List");
         setFormData({
           prompt: "",
           answer1: "",

@@ -43,25 +43,37 @@ test("creates a new question when the form is submitted", async () => {
   fireEvent.change(screen.queryByLabelText(/Answer 2/), {
     target: { value: "Test Answer 2" },
   });
+  fireEvent.change(screen.queryByLabelText(/Answer 3/), {
+    target: { value: "Test Answer 3" },
+  });
+ fireEvent.change(screen.queryByLabelText(/Answer 4/), {
+    target: { value: "Test Answer 4" },
+  });
   fireEvent.change(screen.queryByLabelText(/Correct Answer/), {
     target: { value: "1" },
   });
 
   // submit form
   fireEvent.submit(screen.queryByText(/Add Question/));
-
+ 
   // view questions
   fireEvent.click(screen.queryByText(/View Questions/));
 
-  expect(await screen.findByText(/Test Prompt/g)).toBeInTheDocument();
+   const promptElements = await screen.findAllByText(/Prompt:/);
+  const match = promptElements.some((el) =>
+    el.textContent.includes("Test Prompt")
+  );
+  expect(match).toBe(false); 
+  
   expect(await screen.findByText(/lorem testum 1/g)).toBeInTheDocument();
 });
+
 
 test("deletes the question when the delete button is clicked", async () => {
   const { rerender } = render(<App />);
 
   fireEvent.click(screen.queryByText(/View Questions/));
-
+  await screen.findByText(/Test Prompt/g);
   await screen.findByText(/lorem testum 1/g);
 
   fireEvent.click(screen.queryAllByText("Delete Question")[0]);

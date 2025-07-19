@@ -54,6 +54,17 @@
         "destructuring"
       ],
       "correctIndex": 3
+    },
+    {
+      "prompt": "Capital of Uganda",
+      "answers": [
+        "Nairobi",
+        "Paris",
+        "Kampala",
+        "Sydney"
+      ],
+      "correctIndex": 0,
+      "id": 6
     }
   ]
 }
