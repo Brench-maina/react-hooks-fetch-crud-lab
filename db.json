@@ -54,17 +54,6 @@
         "destructuring"
       ],
       "correctIndex": 3
-    },
-    {
-      "prompt": "Capital city of France",
-      "answers": [
-        "Nairobi",
-        "Paris",
-        "London",
-        "Sydney"
-      ],
-      "correctIndex": 1,
-      "id": 6
     }
   ]
 }
