@@ -65,6 +65,17 @@
       ],
       "correctIndex": 0,
       "id": 6
+    },
+    {
+      "prompt": "Capital city of France",
+      "answers": [
+        "Nairobi",
+        "Paris",
+        "Kampala",
+        "Sydney"
+      ],
+      "correctIndex": 1,
+      "id": 7
     }
   ]
 }
